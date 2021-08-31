@@ -5,9 +5,7 @@ public:
         ans.push_back(first);
         
         for(int i=0;i<encoded.size();i++){
-            int num = abs(encoded[i]-first);
-            ans.push_back(num);
-            first = num;
+            ans.push_back(encoded[i]^ans[i]);
         }
         return ans;
     }
