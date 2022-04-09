@@ -1,7 +1,7 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char,long> freq;
+        unordered_map<char,int> freq;
         priority_queue<pair<int,char>> maxh;
         string ans;
         
