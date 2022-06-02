@@ -11,28 +11,33 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
+        // Base Case when node = 0 or 1
         if(head == NULL || head->next == NULL){
             return head;
         }
-        ListNode* temp = head;
-        vector<int> v;
         
-        while(temp!= NULL){
-            v.push_back(temp->val);
-            temp = temp->next;
+        // Creating vector and push all elements in a vector
+        vector<int> v;
+        ListNode* temp = head;
+        
+        while(head!= NULL){
+            v.push_back(head->val);
+            head = head->next;
         }
-        temp = head;
         
         int n = v.size();
         k = k%n;
         
-        if(k == 0) return head;
+        // case when k is a multiple of size of LL. In that case just return head.
+        if(k == 0) return temp;
         
+        // rotate vector to right by k times
         rotate(v.begin(),v.begin()+v.size()-k, v.end());
+        
+        // vector to linked list
         ListNode* dummy = new ListNode();
         ListNode* res = dummy;
         for(int i=0;i<n;i++){
-            cout<<v[i]<<" ";
             ListNode* newNode = new ListNode(v[i]);
             dummy->next = newNode;
             dummy = dummy->next;
