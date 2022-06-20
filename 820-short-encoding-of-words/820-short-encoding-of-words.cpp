@@ -6,12 +6,12 @@ public:
         
         for(auto word: s1){
             for(int i=1;i<word.size();i++){
-                s2.erase(word.substr(i));
+                s1.erase(word.substr(i));
             }
         }
         
         string s = "";
-        for(auto word : s2){
+        for(auto word : s1){
             s += word + "#";
         }
         return s.size();
