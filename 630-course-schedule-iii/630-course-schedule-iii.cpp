@@ -1,11 +1,16 @@
 class Solution {
 public:
+    
+    // Compare function to sort the array based on lastday
+    
     static bool fn(vector<int> &c1, vector<int> &c2){
         return c1[1]<c2[1];    
     }
     
     int scheduleCourse(vector<vector<int>>& courses) {
         sort(courses.begin(),courses.end(),fn);
+        
+        // heap to store the result
         priority_queue<int> maxh;
         int time = 0;
         
