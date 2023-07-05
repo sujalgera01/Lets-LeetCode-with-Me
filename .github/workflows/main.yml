@@ -24,10 +24,7 @@ jobs:
       run: |
         $env:TOKEN="${{ secrets.GITHUB_TOKEN }}"
         $env:USER="sujalgera01"
-        $env:URL="https://api.github.com/users/sujalgera01"
 
-        $RESPONSE = Invoke-RestMethod -Headers @{Authorization = "token $env:TOKEN"} -Uri $env:URL
-        $CONTRIBUTIONS = $RESPONSE.public_repos
+        $CONTRIBUTIONS = $(git log --author="$env:USER" --since="1 month ago" --oneline | Measure-Object -Line | Select-Object -ExpandProperty Lines)
 
-        echo "CONTRIBUTIONS=$CONTRIBUTIONS"
-        echo "::set-env name=CONTRIBUTIONS::$CONTRIBUTIONS"
+        echo "CONTRIBUTIONS=$CONTRIBUTIONS" >> $env:GITHUB_ENV
