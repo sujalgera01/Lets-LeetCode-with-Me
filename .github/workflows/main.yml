@@ -29,4 +29,5 @@ jobs:
         $RESPONSE = Invoke-RestMethod -Headers @{Authorization = "token $env:TOKEN"} -Uri $env:URL
         $CONTRIBUTIONS = $RESPONSE.public_repos
 
-        echo "CONTRIBUTIONS=$CONTRIBUTIONS" >> $GITHUB_ENV
+        echo "CONTRIBUTIONS=$CONTRIBUTIONS"
+        echo "::set-env name=CONTRIBUTIONS::$CONTRIBUTIONS"
