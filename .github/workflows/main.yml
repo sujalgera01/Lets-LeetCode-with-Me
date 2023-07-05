@@ -1,0 +1,32 @@
+name: Count Contributions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  count-contributions:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Count Contributions
+      id: count
+      run: |
+        $env:TOKEN="${{ secrets.GITHUB_TOKEN }}"
+        $env:USER="sujalgera01"
+        $env:URL="https://api.github.com/users/sujalgera01"
+
+        $RESPONSE = Invoke-RestMethod -Headers @{Authorization = "token $env:TOKEN"} -Uri $env:URL
+        $CONTRIBUTIONS = $RESPONSE.contributions
+
+        echo "SUJAL_GERA_CONTRIBUTIONS=$CONTRIBUTIONS" >> $GITHUB_ENV
