@@ -27,6 +27,6 @@ jobs:
         $env:URL="https://api.github.com/users/sujalgera01"
 
         $RESPONSE = Invoke-RestMethod -Headers @{Authorization = "token $env:TOKEN"} -Uri $env:URL
-        $CONTRIBUTIONS = $RESPONSE.contributions
+        $CONTRIBUTIONS = $RESPONSE.public_repos
 
-        echo "SUJAL_GERA_CONTRIBUTIONS=$CONTRIBUTIONS" >> $GITHUB_ENV
+        echo "CONTRIBUTIONS=$CONTRIBUTIONS" >> $GITHUB_ENV
