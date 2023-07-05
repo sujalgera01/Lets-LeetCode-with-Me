@@ -25,6 +25,5 @@ jobs:
         $env:TOKEN="${{ secrets.GITHUB_TOKEN }}"
         $env:USER="sujalgera01"
 
-        $CONTRIBUTIONS = $(git log --author="$env:USER" --since="1 month ago" --oneline | Measure-Object -Line | Select-Object -ExpandProperty Lines)
-
-        echo "CONTRIBUTIONS=$CONTRIBUTIONS" >> $env:GITHUB_ENV
+        $CONTRIBUTIONS = git log --author="$env:USER" --since="1 month ago" --oneline | Measure-Object -Line | Select-Object -ExpandProperty Lines
+        echo "CONTRIBUTIONS=$CONTRIBUTIONS" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
